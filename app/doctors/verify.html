@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no">
+    <title>Profile Verification</title>
+    <link rel="icon" type="image/x-icon" href="../assets/img/favicon.ico"/>
+    <!-- BEGIN GLOBAL MANDATORY STYLES -->
+    <link href="https://fonts.googleapis.com/css?family=Nunito:400,600,700" rel="stylesheet">
+    <link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="../assets/css/plugins.css" rel="stylesheet" type="text/css" />
+    <link href="../assets/css/authentication/form-2.css" rel="stylesheet" type="text/css" />
+    <!-- END GLOBAL MANDATORY STYLES -->
+    <link rel="stylesheet" type="text/css" href="../assets/css/forms/theme-checkbox-radio.css">
+    <link rel="stylesheet" type="text/css" href="../assets/css/forms/switches.css">
+</head>
+<body class="form">
+    
+
+    <div class="form-container outer">
+        <div class="form-form">
+            <div class="form-form-wrap">
+                <div class="form-container">
+                    <div class="form-content">
+
+                        <h1 class="">Complete your Registration</h1>
+                       
+                        <form class="text-left" id="signupform">
+                            <div class="form">
+
+                                <div id="username-field" class="field-wrapper input">
+                                    <label for="username">Profile Picture</label>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-user"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                                    <input id="imgfile" name="imgfile" accept="image/*" type="file" class="form-control" placeholder="" onchange="upload()" required/>
+                                    <input type="hidden" id="imgfile1" />
+                                </div>
+                                <div id="username-field" class="field-wrapper input">
+                                    <label for="username">Work Place ID CARD</label>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-user"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                                    <input id="imgid" name="imgid" accept="image/*" type="file" class="form-control" placeholder="" onchange="upload(true)" 
+                                    required/>
+                                    <input type="hidden" id="imgfile2" />
+                                </div>
+
+                                
+
+                                <div class="d-sm-flex justify-content-between">
+                                    <div class="field-wrapper">
+                                        <label id="info" class="text-red"></label>
+                                        <button type="submit" id="btnsubmit" class="btn btn-primary" value="">Verify</button>
+                                    </div>
+                                </div>
+
+                               
+
+                            </div>
+                        </form>
+
+                    </div>                    
+                </div>
+            </div>
+        </div>
+    </div>
+
+      <style type="text/css">
+        .text-red {
+            color: red;
+        }
+    </style>
+    <!-- BEGIN GLOBAL MANDATORY SCRIPTS -->
+    <script src="../assets/js/libs/jquery-3.1.1.min.js"></script>
+    <script src="../bootstrap/js/popper.min.js"></script>
+    <script src="../bootstrap/js/bootstrap.min.js"></script>
+    
+    <!-- END GLOBAL MANDATORY SCRIPTS -->
+    <script src="../assets/js/authentication/form-2.js"></script>
+     <script type="text/javascript" src="../index.js"></script>
+    <script type="text/javascript" src="../assets/sw2.js"></script>
+    <script type="text/javascript">
+         var token;
+         if(getitem("doctoken")){
+            token = getitem('doctoken');
+            var data = JSON.stringify({"token":token});
+
+        }
+        $("#signupform").submit(function(e){
+            e.preventDefault();
+            var picture = value('imgfile1');
+            var idcard = value('imgfile2');
+            if(picture==""||idcard==""){
+                inform("Empty Picture or ID card");
+            }
+            else {  
+                s();
+                var data = JSON.stringify({"token":token,"picture":picture,"idcard":idcard});
+                pull('doctors/updateprofile',{
+                    method:'POST',
+                    body:data,
+                })
+                .then(response=>response.json())
+                .then((data)=>{
+                      p();
+                    if(data.code==200){
+                        Swal.fire({
+                            icon:'success',
+                            text:data.text,
+                            showConfirmButton:false,
+                            timer:3000,
+                        })
+                        .then((result)=>{
+                            window.location.href="index";
+                        })
+                    }
+                    else if(data.code==204){
+                        login();
+                    }
+                    else {
+                        inform(data.text);
+                    }
+                })
+                .catch((err)=>{
+                    inform(err);
+                    console.log(err);
+                })
+
+            }
+
+        })
+          function upload(e){ 
+            if(e||e!=undefined){
+                var f = 'imgid';
+                var e = 'imgfile2';
+            }
+            else {
+                var f = 'imgfile';
+                var e = 'imgfile1';
+            }
+        var form = new FormData();
+        var file =  document.getElementById(f).files[0];
+        if(file!=""){
+        form.append('image',file);
+        Swal.fire({
+            text:"Processing Photo",
+            allowOutsideClick:false,
+            showConfirmButton:false,
+            allowEscapeKey:false,
+            footer:'<i class="fa fa-spinner fa-spin"></i>',
+        })
+        pull('uploadpicture',{
+            method:"POST",
+            body:form,
+        })
+        .then(response=>response.json())
+        .then((data)=>{
+            Swal.fire({
+                timer:2000,
+                text:'Picture Uploaded',
+                icon:'success',
+                showConfirmButton:false,
+            })
+            //console.log(data);
+            if(data.code==200){
+               var filename = data.text;
+               get(e).value=filename;
+            }
+            else {
+                throw data.text;
+            }
+        })
+        .catch((err)=>{
+            console.log(err);
+            //retry if on production
+           // upload();
+        })
+    }
+    }
+        function valnumber(number){
+            var nums = number.toString().split("");
+            var response = true;
+            nums.forEach((num)=>{
+                var numbers = '1234567890';
+                var ns = numbers.split("");
+                var isnumber = ns.indexOf(num);
+                if(isnumber<0){
+                    response = false;
+                }
+
+
+            })
+            return response;
+        }
+         function inform(e){
+            get('info').innerHTML=e;
+            p();
+            return false;
+        }
+        function s(){
+            get('btnsubmit').disabled=true;
+            get('btnsubmit').innerHTML='Saving.......';
+        }
+        function p(){
+            get('btnsubmit').disabled=false;
+            get('btnsubmit').innerHTML='Save and Proceed ';
+        }
+        function valnumber(number){
+            var nums = number.toString().split("");
+            var response = true;
+            nums.forEach((num)=>{
+                var numbers = '1234567890';
+                var ns = numbers.split("");
+                var isnumber = ns.indexOf(num);
+                if(isnumber<0){
+                    response = false;
+                }
+
+
+            })
+            return response;
+        }
+        </script>
+</body>
+</html>

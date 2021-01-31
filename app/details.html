@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no">
+    <title>Complete Your Registration </title>
+    <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico"/>
+    <!-- BEGIN GLOBAL MANDATORY STYLES -->
+    <link href="https://fonts.googleapis.com/css?family=Nunito:400,600,700" rel="stylesheet">
+    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="assets/css/plugins.css" rel="stylesheet" type="text/css" />
+    <link href="assets/css/authentication/form-2.css" rel="stylesheet" type="text/css" />
+    <!-- END GLOBAL MANDATORY STYLES -->
+    <link rel="stylesheet" type="text/css" href="assets/css/forms/theme-checkbox-radio.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/forms/switches.css">
+</head>
+<body class="form">
+    
+
+    <div class="form-container outer">
+        <div class="form-form">
+            <div class="form-form-wrap">
+                <div class="form-container">
+                    <div class="form-content">
+
+                        <h1 class="">Complete your registration</h1>
+                       
+                        <form class="text-left" id="signupform">
+                            <div class="form">
+
+                                <div id="username-field" class="field-wrapper input">
+                                    <label for="username">Home Address</label>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-user"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                                    <input id="patientaddress" name="address" type="text" class="form-control" placeholder="Home Address">
+                                </div>
+                                 <div id="username-field" class="field-wrapper input">
+                                    <label for="username">Description</label>
+                                    
+                                    <select id="patientdesc" name="desc" type="text" class="form-control" placeholder="Physical Description">
+                                        <option value="">Description</option>
+                                        <option value="Tall Light">Tall and Light complexion</option>
+                                        <option value="Short Light">Short and Light complexion</option>
+                                        <option value="Tall Dark">Tall and Dark complexion</option>
+                                        <option value="Short Dark">Short and Dark complexion</option>
+                                    </select>
+                                </div>
+                                <div id="username-field" class="field-wrapper input">
+                                    <label for="username">Next of Kin Full Name</label>
+                                    <small>Your Next of Kin would be contacted in a case of emergency</small>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-user"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                                    <input id="patientnextofkin" name="name" type="text" class="form-control" placeholder="Next of Kin Name">
+                                </div>
+                                <div id="username-field" class="field-wrapper input">
+                                    <label for="username">Next of Kin Phone Number</label>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-user"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                                    <input id="patientnextcontact" name="patientnextcontact" type="tel" class="form-control" placeholder="Next of Kin Contact">
+                                </div>
+                                <div id="username-field" class="field-wrapper input">
+                                    <label for="username">Work Place e.g Engineer at Chevron</label>
+                                    <small>Leave empty if not employed yet</small>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-user"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                                    <input id="employment" name="address" type="text" class="form-control" placeholder="Work Place">
+                                </div>
+                                <div id="username-field" class="field-wrapper input">
+                                    <label for="username">Your Recent Picture</label>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-user"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                                    <input id="picture" name="imgfile" type="file" class="form-control" accept="image/*" onchange="upload()" />
+                                </div>
+                                <div class="d-sm-flex justify-content-between">
+                                    <div class="field-wrapper">
+                                        <label id="info" class="text-red"></label>
+                                        <button type="submit" id="btnsubmit" class="btn btn-primary" value="">Save and Proceed</button>
+                                    </div>
+                                </div>
+
+                               
+
+                            </div>
+                        </form>
+
+                    </div>                    
+                </div>
+            </div>
+        </div>
+    </div>
+
+      <style type="text/css">
+        .text-red {
+            color: red;
+        }
+    </style>
+    <input type="hidden" name="filename" id="filename">
+    <!-- BEGIN GLOBAL MANDATORY SCRIPTS -->
+    <script src="assets/js/libs/jquery-3.1.1.min.js"></script>
+    <script src="bootstrap/js/popper.min.js"></script>
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+    
+    <!-- END GLOBAL MANDATORY SCRIPTS -->
+    <script src="assets/js/authentication/form-2.js"></script>
+     <script type="text/javascript" src="index.js"></script>
+    <script type="text/javascript" src="assets/sw2.js"></script>
+    <script type="text/javascript">
+    startup();
+    function startup(){
+        var token = getitem('usertoken');
+        if(token){
+            //fetch profile
+            load();
+            profile(token);
+        }
+        else {
+            window.location.href="login";
+        }
+    }
+    function load(){
+
+        $("body").append('<div class="load"><div class="lds-heart"><div></div></div></div>');
+    }
+    function closeload(){
+        $(".load").remove();
+    }
+    $("#signupform").submit(function(e) {
+        e.preventDefault();
+         //{"code":200,"text":{"patientfirstname":"Adeniji","patientemail":"devferanmo@gmail.com","patientnumber":"08063330833","patientaddress":"","patientbloodgroup":"","patientgenotype":"","patientdesc":"","patientpicture":"","patientnextofkin":"","patientnextcontact":"","patientlastname":"Oluwaferanmi","employment":""},"date":"11:49-26\/10\/2020"}
+            //data expected 
+            //$dat = '{"address":"kinnira,Oyo,Ogbomoso","desc":"Tall Light","picture":"img/logo.png","nextofkin":" Dr Adebayo","nextofkincontact":"09018464603","employment":"Software Engineer,Google"}';
+        var address = value('patientaddress');
+        var desc = value('patientdesc');
+        var nextofkin = value('patientnextofkin');
+        var nextofkincontact = value('patientnextcontact');
+        var employment = value('employment');
+        var filename = value('filename');
+
+        if(address==""||desc==""||nextofkincontact==""||nextofkin==""){
+            inform("Empty Form Fields");
+        }
+        else {
+            if(address.length<5){
+                inform("Invalid Home Address");
+            }
+            else if(nextofkin.length<5){
+                inform("Invalid Next of Kin Name");
+            }
+            else if(!valnumber(nextofkincontact)||nextofkincontact.length<11){
+                inform("Invald Next of Kin Phone Number")
+            }
+            else if(filename==""){
+                inform("Please select an image to proceed");
+            }
+            else {
+                s();
+                var token = getitem('usertoken');
+                var data = JSON.stringify({"token":token,"address":address,"desc":desc,"picture":filename,"nextofkin":nextofkin,"nextofkincontact":nextofkincontact,"employment":employment});
+                pull('details',{
+                    method:'POST',
+                    body:data
+                })
+                .then(response=>response.json())
+                .then((data)=>{
+                    p();
+                    if(data.code==200){
+                        toast(data.text);
+                        window.setTimeout(()=>{
+
+                        window.location.href='medicals';
+                        },2000);
+                    }
+                    else if(data.code==204){
+                        login();
+                    }
+                    else {
+
+                        inform(data.text)
+                    }
+                })
+                .catch((err)=>{
+                    inform("Request Failed at the moment");
+                    console.log(err);
+                })
+            }
+        }
+        // body...
+    })
+    function upload(e){ 
+        var form = new FormData();
+        var file =  document.getElementById("picture").files[0];
+        if(file!=""){
+        form.append('image',file);
+        Swal.fire({
+            text:"Processing Photo",
+            allowOutsideClick:false,
+            showConfirmButton:false,
+            allowEscapeKey:false,
+            footer:'<i class="fa fa-spinner fa-spin"></i>',
+        })
+        pull('uploadpicture',{
+            method:"POST",
+            body:form,
+        })
+        .then(response=>response.json())
+        .then((data)=>{
+            Swal.fire({
+                timer:2000,
+                text:'Picture Uploaded',
+                icon:'success',
+                showConfirmButton:false,
+            })
+            //console.log(data);
+            if(data.code==200){
+               var filename = data.text;
+               get('filename').value=filename;
+            }
+            else {
+                throw data.text;
+            }
+        })
+        .catch((err)=>{
+            console.log(err);
+            //retry if on production
+            upload();
+        })
+    }
+}
+    
+    function login(){
+    localStorage.removeItem('usertoken');
+    window.location.href="login";
+}
+function profile(token){
+   
+    var data = JSON.stringify({"token":token});
+    pull('profile',{
+        method:'POST',
+        body:data,
+    })
+    .then(response=>response.json())
+    .then((data)=>{
+        closeload();
+        //console.log(data);
+        if(data.code==200){
+            var user = data.text;
+            //sample 
+            //{"code":200,"text":{"patientfirstname":"Adeniji","patientemail":"devferanmo@gmail.com","patientnumber":"08063330833","patientaddress":"","patientbloodgroup":"","patientgenotype":"","patientdesc":"","patientpicture":"","patientnextofkin":"","patientnextcontact":"","patientlastname":"Oluwaferanmi","employment":""},"date":"11:49-26\/10\/2020"}
+            //data expected 
+          
+
+            if(user.patientaddress!=""){
+                console.log('details filed previously');
+
+            }
+        }
+        else if(data.code==204){
+            login();
+        }
+        else {
+            profile(token);
+        }
+    })
+    .catch((err)=>{
+        console.log(err);
+         if(window.location.origin!='http://localhost'){
+          //profile(token);
+
+      }
+    })
+}
+        function valnumber(number){
+            var nums = number.toString().split("");
+            var response = true;
+            nums.forEach((num)=>{
+                var numbers = '1234567890';
+                var ns = numbers.split("");
+                var isnumber = ns.indexOf(num);
+                if(isnumber<0){
+                    response = false;
+                }
+
+
+            })
+            return response;
+        }
+         function inform(e){
+            get('info').innerHTML=e;
+            p();
+            return false;
+        }
+        function s(){
+            get('btnsubmit').disabled=true;
+            get('btnsubmit').innerHTML='Saving .....';
+        }
+        function p(){
+            get('btnsubmit').disabled=false;
+            get('btnsubmit').innerHTML='Save and Proceed';
+        }
+        </script>
+</body>
+</html>
